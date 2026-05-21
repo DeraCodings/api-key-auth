@@ -1,0 +1,64 @@
+{
+  "policies": [
+    {
+      "handler": {
+        "export": "ApiKeyInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "allowUnauthenticatedRequests": false,
+          "cacheTtlSeconds": 60
+        }
+      },
+      "name": "api-key-inbound",
+      "policyType": "api-key-inbound"
+    },
+    {
+      "handler": {
+        "export": "injectUpstreamHeaders",
+        "module": "$import(./modules/inject-data)"
+      },
+      "name": "custom-code-inbound",
+      "policyType": "custom-code-inbound"
+    },
+    {
+      "handler": {
+        "export": "SetHeadersInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "headers": [
+            {
+              "name": "backend-secret",
+              "value": "$env(BACKEND_SECRET)"
+            }
+          ]
+        }
+      },
+      "name": "set-headers-inbound",
+      "policyType": "set-headers-inbound"
+    },
+    {
+      "handler": {
+        "export": "SetHeadersInboundPolicy",
+        "module": "$import(@zuplo/runtime)",
+        "options": {
+          "headers": [
+            {
+              "name": "x-account-id",
+              "value": "${ZuploRequest.user.data.account_id}"
+            }
+          ]
+        }
+      },
+      "name": "set-headers-inbound-1",
+      "policyType": "set-headers-inbound"
+    },
+    {
+      "handler": {
+        "export": "injectUpstreamHeaders",
+        "module": "$import(./modules/inject-data)"
+      },
+      "name": "custom-code-inbound-1",
+      "policyType": "custom-code-inbound"
+    }
+  ]
+}
