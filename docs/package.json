@@ -8,12 +8,12 @@
     "build": "zudoku build --zuplo"
   },
   "dependencies": {
+    "@mdx-js/react": "3.0.1",
+    "@supabase/supabase-js": "^2.106.1",
+    "@zuplo/zudoku-plugin-monetization": "^0.0.38",
     "react": "^19",
     "react-dom": "^19",
-    "@mdx-js/react": "3.0.1",
-    "@zuplo/zudoku-plugin-monetization": "^0.0.38",
-    "zudoku": "^0.78.0",
-    "@supabase/supabase-js": "^2.106.0"
+    "zudoku": "^0.78.0"
   },
   "devDependencies": {
     "@types/node": "^22",
